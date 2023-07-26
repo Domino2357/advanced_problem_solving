@@ -1,0 +1,88 @@
+Mock Exams
+from https://ftp.ifsr.de/komplexpruef/Problem_Solving_and_Search_in_AI/
+
+Trial 1:
+-comparison of Local Search and Simulated Annealing, what are the differences between them
+I guess what’s meant by local search here is the ordinary hill climber as simulated annealing is a version of local search.
+Differences:
+hill climber depends on the initial solution
+Hill climber is deterministic
+If hill climber finds local maximum, there is no way of escaping it
+-tabu search (frequency based vs. recent-based memory, aspiration criteria)
+recency based memory: check if a region has been exploited during the last k iterations. If so, it is declared tabu.
+Asperation criteria: is installed to prevent (very) good are ignored because they are tabu (by default, oldest solution; by global form, it improves over so far best solution; by influence, it measures distance between current and candidate)
+Frequency based memory: if all non-tabu moves lead to worse solution and no of the asperation criteria apply, check Regions not exploited so far (local maximum has been found, now look in other regions)
+-how does an ASP program look like (syntax, rules, facts, problem instance vs. problem encoding, guessing!)
+An ASP program is a logic program and consists of a finite set of rules of the form a <- b, c, …. , not x, not y. Where a is the head(r), the rest of the atoms are the body(r)
+Facts are atoms which are always true, they are written as a <-. or a. for short. They encode the instance of a problem
+The problem encoding is a set of (general) rules encoding the description of the problem
+I have no idea what is meant by „guessing“
+-what is the semantics of an ASP program (Gelfond Liftzisch Reduct - spell it like you want, i don't care :D )
+The reduct of a program Pfor a set of atoms of X is defined as follows { head(r) <- body(r)+, r element P, body(r)- intersection X = {} }
+An ASP program is solved by finding a stable model of P
+A set X of P is a stable model if the smallest set of atoms closed over the reduct of P w.r.t. X (Cn(P^X)=X)
+-why tree decompositions? What are the three rules for a tree decomposition? How can you get the elimination ordering?
+Tree decompositions can reduce the complexity
+worst case complexity for normal backtracking search is O(d^n) with d = num(domains), n=num(var)
+reformulating the constraint graph as a TD can substantially reduce the complexity:  O(n*d*(k+1)) where k is tree width
+Three rules: vertices in the graph must be covered by nodes of the TD, if there is an edge between two nodes, both must be in one vertex set, for three nodes 1,2,3 if there is a path from 1 to 3 and 2 is on that path, the intersection of the vertex sets of 1, 3 must be in 2 
+elemenation ordering: meta heuristic search methods (finding the minimal treewidth is NP hard), in particular Min-Fill heuristic, maximum cardinality search
+-which rule is removed for a general hypertree decomposition?
+a hypertree decomposition is a GHD with the additional rule that for every p in vertices(T) the intersection of the vertices of the hyperedge set assigned to p  and the union of all vertex sets of the subtree induced by p is a subset of the vertex set of p
+
+Trial 2:
+ CSP
+  - What is CSP? (structure etc.)
+CSP is defined as a triple: X, D, C where X is a Set of variables, D is a set of domains (set of possible values) for each variable, and C is a set of constraints relating the variables
+a constraint is a tuple consisting of a scope and a relation, where the scope contains the constrained variables and the relation the relation between them
+  - How to solve a CSP?
+create a constraint graph (each variable is a node, if they are both contained in a scope of a constraint, there is an edge between them (except if they are the same node)
+backtracking search: depth-first search through the graph,
+brute-force approach too costly
+forward keep track of legal values for unassigned variables
+rule out further values by means of constraint propagation: apply node consistency, arc consistency (for every value X, there is a valid value Y), path consistency (for every ass X, Y, there is a valid ass X,Z, Z,Y if Z is on the path between them
+ reduce the search space by introducing heuristics for the search (MRV, degree heuristic, least constraining value)
+  - Which kind of CSPs are easy to solve?
+the ones which have a a cycle free constraint graph, O(n*d^2)
+- Tree Decomposition
+  - rules for tree decomposition
+  - How to transform graph to tree?
+  - How is the (tree)width defined? How to find a good one?
+- ASP
+  - syntax (general form, integrality constraints, facts)
+  - semantics
+    - What are stable models? How to compute them (normal/positive programs)
+    - How is negation defined? default/classical negation: classic: x negated is in stable model; default: x is not in the stable model. For default negation we require absence of evidence, for classical negation we require evidence of absence
+
+
+Trial 3:
+CSP: 
+- Definition
+- LÃ¶sungssuche (Backtracking)
+- Constraint Propagation
+- KomplexitÃ¤t
+
+Tree Decomposition:
+- 3 Regeln
+- Elimination ordering
+
+Trial 4:
+He started with constraint satisfaction problems. I.e. write down definition of a CSP and elaborate what a constraint is (be careful here, I thought that was either an abstract relation or a tuple set, but he wanted to know what scope and rel are). Then he wanted to know the complexity of solving CSPs and how this can be improved with heuristics (first I thought he meant meta-heuristic algorithms, then I realized he was talking about MRV, Degree Heuristic, LCV, etc). He then asked what other structures are useful to solve a CPS (i.e. if they are tree-structured (explain what a tree is in contrast of a CPS first, he wants to know that, as well - because I said variables are nodes and constraints are edges he also asked me how CSPs with ternary constraints look like because edges are binary: I didn't know, in this case you still have only binary constraints but for e.g. a ternary constraint the three variables form a triangle in the graph)). I then told him about cutset conditioning because that makes a CSP easier to solve, as well. He didn't ask me about treedecomposition, but might have. The last topic was ASP, where he wanted to see what a rule looks like and then about the Gelfond-Lifschitz-Reduct. He also wanted to know what the intended semantics is about ASP -> stable models (what are they etc).
+
+Trial 5:
+ Local Search vs. Simulated Annealing (gemeint als: Wie ist der Zusammenhang)
+- Simulated Annealing (relativ detailiert: was macht die Wahrscheinlichkeit, Ã„nderung von T, Ãœbergang von quasi random-search zu normalem Hillclimber)
+- CSP
+    - Definition (Variablen, Domains, Constraints)
+    - Wie lÃ¶st man CSPs
+        - Constraint Propagation (Welche Arten von Consistency)
+        - Search (spezifisch Backtracking Search, aber nicht so genau ausgefÃ¼hrt)
+            - Verbesserungen (Variable- und Value-Selection)
+        - Complexity (O(d^n))
+    - Verbesserung der Complexity? -> Tree Structure (O(n*d^2))
+        - Wie erreicht man die (Nearly Tree Structure oder allgemeiner Tree Decomposition)
+- Tree Decomposition
+    - Definition Tree Decomposition (Baum mit assozierten Vertex-Sets, 3 Eigenschaften, width, tree-width)
+    - Wie bekommt man eine Decomposition (Elimination Ordering, Algorithmus, dann beste Permutation finden)
+    - Wie lÃ¶st man CSP mit der Decomposition (Subgraphen/Subprobleme lÃ¶sen, Dynamic Programming)
+    - Was ist dann die Complexity (fÃ¼r CSP bei gegebener Decomposition) -> O(n*d^k) (k tree-width)

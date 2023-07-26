@@ -1,0 +1,17 @@
+# the maze from the exercise sheet
+E,E,E,E,E,W,E,E,E,E,E,W,E,E,E,C
+E,E,E,E,E,W,E,E,E,E,E,W,E,E,E,E
+E,E,E,E,E,W,E,E,E,E,E,W,E,E,E,E
+E,E,E,E,E,E,E,E,E,E,E,W,E,E,E,E
+E,E,E,W,W,W,W,W,E,E,E,W,E,E,E,E
+E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E
+E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E
+E,E,E,E,E,W,W,W,W,W,E,E,W,E,E,E
+E,E,E,E,E,W,E,E,W,E,E,E,E,E,E,E
+E,E,E,E,E,W,E,E,W,E,E,E,E,E,E,E
+E,E,E,E,E,W,E,E,W,E,E,E,W,W,W,W
+W,W,W,E,E,E,E,E,E,E,E,E,E,E,E,E
+E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E
+E,E,E,E,E,E,E,E,E,E,E,E,E,E,E,E
+E,E,W,E,E,E,E,E,E,E,E,E,E,E,E,E
+M,E,W,E,E,E,E,E,E,E,E,E,E,E,E,E

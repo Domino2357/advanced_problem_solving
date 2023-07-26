@@ -1,0 +1,32 @@
+%instance
+p(1..8).
+%mr and mrs smith
+c(1,2).
+%the guests
+c(3,4).
+c(5,6).
+c(7,8).
+
+%encoding
+%couple is bidirectional
+c(X,Y) :- c(Y,X).
+%a person can only shake hands with another person once
+0{shake(X,Y)}1 :- p(X), p(Y).
+%shaking is bidirectional
+shake(X,Y) :- shake(Y,X).
+%counting handshakes
+handshakeCount(X, N) :- p(X), N=#count{p(Y): shake(X,Y)}.
+
+%test
+%couples can't shake hands
+:- shake(X,Y), c(X,Y).
+%no one can shake hands with themselves
+:- shake(X,X).
+%all handshake counts must differ, except that one from mr Smith
+:- p(X), p(Y), handshakeCount(X,N), handshakeCount(Y,N), X!=Y, X!=1, Y!=1.
+
+#show().
+
+
+
+

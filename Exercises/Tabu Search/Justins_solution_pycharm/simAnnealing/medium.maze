@@ -1,0 +1,11 @@
+# only one hole in the diagonal ;)
+W,E,E,E,E,E,E,E,E,C
+E,W,E,E,E,E,E,E,E,E
+E,E,W,E,E,E,E,E,E,E
+E,E,E,W,E,E,E,E,E,E
+E,E,E,E,W,E,E,E,E,E
+E,E,E,E,E,W,E,E,E,E
+E,E,E,E,E,E,W,E,E,E
+E,E,E,E,E,E,E,E,E,E
+E,E,E,E,E,E,E,E,W,E
+M,E,E,E,E,E,E,E,E,W
